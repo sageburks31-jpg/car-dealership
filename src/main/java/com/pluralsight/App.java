@@ -11,41 +11,8 @@ public class App {
     static Scanner scanner = new Scanner(System.in);
     static Dealership dealership;
 
-    public static void readFromFile() {
-        FileReader fileReader;
-        try {
-            fileReader = new FileReader("inventory.csv");
-            BufferedReader bufReader = new BufferedReader(fileReader);
-            String input;
-            while((input = bufReader.readLine()) != null) {
-                String[] lineSegment = input.split("\\|");
-                if (lineSegment.length>2 && canParseStringToInt(lineSegment[0])) {
-                    Vehicle transaction = getVehicle(lineSegment);
-                    dealership.addVehicle(transaction);
-                } else {
-                    dealership = new Dealership(lineSegment[0],lineSegment[1],lineSegment[2]);
-                }
-            }
-            bufReader.close();
-        } catch (IOException e) {throw new RuntimeException(e);}
-    }
-
-    private static Vehicle getVehicle(String[] lineSegment) {
-        int vin = Integer.parseInt(lineSegment[0]);
-        int year = Integer.parseInt(lineSegment[1]) ;
-        String make = lineSegment[2];
-        String model = lineSegment[3];
-        String type = lineSegment[4];
-        String color = lineSegment[5];
-        int odometer = Integer.parseInt(lineSegment[6]);
-        BigDecimal price = BigDecimal.valueOf(Double.parseDouble(lineSegment[7]));
-        return new Vehicle(vin, year, make, model, type, color, odometer, price);
-    }
-
-    public static void writeToFile() {}
-
     public static void main(String[] args) {
-        readFromFile();
+        DealershipFileManager.readFromFile();
         displayMainMenu();
         System.out.print("thank you for using this program");
         scanner.close();
@@ -140,14 +107,14 @@ public class App {
         }
     }
 
-    private static void findVehiclesByPrice() {}
-    private static void findVehiclesByMakeModel() {}
+    private static void findVehiclesByPrice() {dealership.findVehiclesByPrice();}
+    private static void findVehiclesByMakeModel() {dealership.findVehiclesByMakeModel();}
 
-    private static void findVehiclesByYear() {}
-    private static void findVehiclesByColor() {}
+    private static void findVehiclesByYear() {dealership.findVehiclesByYear();}
+    private static void findVehiclesByColor() {dealership.findVehiclesByColor();}
 
-    private static void findVehiclesByMileage() {}
-    private static void findVehiclesByType() {}
+    private static void findVehiclesByMileage() {dealership.findVehiclesByMileage();}
+    private static void findVehiclesByType() {dealership.findVehiclesByType();}
 
     private static void listAllVehicles() {
         dealership.listAllVehicles();
@@ -247,5 +214,5 @@ public class App {
         }
         if (isComplete) {dealership.addVehicle(vehicle);}
     }
-    private static void removeVehicle() {}
+    private static void removeVehicle() {dealership.removeVehicle();}
 }

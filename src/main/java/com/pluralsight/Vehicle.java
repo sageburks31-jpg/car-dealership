@@ -57,5 +57,8 @@ public class Vehicle {
             type,
             color,
             odometer,
-            price); }
+            price);
+    }
+    public String toShortRow(){return String.format("%d | %d | %s | %s",
+            vin, year, make, model); }
 }

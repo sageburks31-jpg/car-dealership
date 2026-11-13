@@ -30,4 +30,29 @@ public class Dealership {
     public void listAllVehicles() {
         vehicleList.forEach(vehicle -> System.out.println(vehicle.toRow()));
     }
+    public void removeVehicle() {
+        Scanner scanner =new Scanner(System.in);
+        vehicleList.forEach(vehicle -> System.out.println(vehicle.toShortRow()));
+        System.out.println("Enter vehicle vin number to remove from list");
+        int vinKey = App.promptToInt("Enter VIN number here -> ");
+        int targetIndex = -1;
+        for (int i = 0; i < vehicleList.size()-1; i++) {
+            if (vehicleList.get(i).getVin()==vinKey) {
+                targetIndex=i;
+                break;
+            }
+        }
+        if (targetIndex>-1) vehicleList.remove(targetIndex);
+    }
+    public void findVehiclesByPrice() {
+
+    }
+    public void findVehiclesByMakeModel() {}
+
+    public void findVehiclesByYear() {}
+    public void findVehiclesByColor() {}
+
+    public void findVehiclesByMileage() {}
+    public void findVehiclesByType() {}
+
 }
