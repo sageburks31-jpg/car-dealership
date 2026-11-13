@@ -1,12 +1,16 @@
 package com.pluralsight;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-
-import static java.lang.Thread.sleep;
 
 public class UserInterface {
-    protected static void displayMainMenu() {
+
+    private static Dealership dealership;
+
+    private void init() {DealershipFileManager.readFromFile();
+        dealership = App.dealership;}
+
+    protected void displayMainMenu() {
+        init();
         int intAnswer;
         do {
             System.out.print("""
@@ -21,7 +25,7 @@ public class UserInterface {
                     9 - Remove a vehicle
                     99 - Quit""" + "\n");
 
-            intAnswer = promptToInt("Enter command here -> ");
+            intAnswer = App.promptToInt("Enter command here -> ");
             switch (intAnswer) {
                 case 1 -> findVehiclesByPrice();
                 case 2 -> findVehiclesByMakeModel();
@@ -37,75 +41,17 @@ public class UserInterface {
         } while (intAnswer != 99);
     }
 
-    public static int promptToInt(String prompt) {
-        do {
-            try {
-                System.out.print(prompt);
-                return Integer.parseInt(App.scanner.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println("command is invalid\n");
-                try {
-                    sleep(900);
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        } while (true);
-    }
-    public static BigDecimal promptToBigDecimal(String prompt) {
-        do {
-            try {
-                System.out.print(prompt);
-                return BigDecimal.valueOf(Long.parseLong(App.scanner.nextLine().trim()));
-            } catch (NumberFormatException e) {
-                System.out.println("command is invalid\n");
-                try {
-                    sleep(900);
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        } while (true);
-    }
+    private static void findVehiclesByPrice() {dealership.findVehiclesByPrice();}
+    private static void findVehiclesByMakeModel() {dealership.findVehiclesByMakeModel();}
 
-    public static boolean canPromptToYear(String prompt) {
-        LocalDate parse = LocalDate.now();
-        try {
-            parse = LocalDate.parse(prompt);
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.print(parse);
-            return false;
-        }
-    }
-    public static boolean canParseStringToInt(String prompt) {
-        try {
-            Integer.parseInt(prompt);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-    public static boolean canParseStringToDecimal(String prompt) {
-        try {
-            Double.parseDouble(prompt);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
+    private void findVehiclesByYear() {dealership.findVehiclesByYear();}
+    private void findVehiclesByColor() {dealership.findVehiclesByColor();}
 
-    private static void findVehiclesByPrice() {App.dealership.findVehiclesByPrice();}
-    private static void findVehiclesByMakeModel() {App.dealership.findVehiclesByMakeModel();}
+    private void findVehiclesByMileage() {dealership.findVehiclesByMileage();}
+    private void findVehiclesByType() {dealership.findVehiclesByType();}
 
-    private static void findVehiclesByYear() {App.dealership.findVehiclesByYear();}
-    private static void findVehiclesByColor() {App.dealership.findVehiclesByColor();}
-
-    private static void findVehiclesByMileage() {App.dealership.findVehiclesByMileage();}
-    private static void findVehiclesByType() {App.dealership.findVehiclesByType();}
-
-    private static void listAllVehicles() {App.dealership.listAllVehicles();}
-    private static void addVehicle() {
+    private void listAllVehicles() {dealership.listAllVehicles();}
+    private void addVehicle() {
         Vehicle vehicle = new Vehicle();
         String strAnswer;
         boolean isComplete = false;
@@ -119,7 +65,7 @@ public class UserInterface {
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
                             i +=vehicleFields.length;
-                        } else if (canParseStringToDecimal(strAnswer)) {
+                        } else if (App.canParseStringToDecimal(strAnswer)) {
                             vehicle.setPrice(BigDecimal.valueOf(Double.parseDouble(strAnswer)));
                             break;
                         } else System.out.println("invalid Command\n");
@@ -162,7 +108,7 @@ public class UserInterface {
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
                             i -=2;
-                        } else if (canParseStringToDecimal(strAnswer)) {
+                        } else if (App.canParseStringToDecimal(strAnswer)) {
                             vehicle.setPrice(BigDecimal.valueOf(Double.parseDouble(strAnswer)));
                             break;
                         } else System.out.println("invalid Command\n");
@@ -175,7 +121,7 @@ public class UserInterface {
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
                             i -= 2;
-                        } else if (canParseStringToInt(strAnswer)) {
+                        } else if (App.canParseStringToInt(strAnswer)) {
                             vehicle.setYear(Integer.parseInt(strAnswer));
                             break;
                         } else System.out.println("invalid Command\n");
@@ -198,7 +144,7 @@ public class UserInterface {
                 }
             }
         }
-        if (isComplete) {App.dealership.addVehicle(vehicle);}
+        if (isComplete) {dealership.addVehicle(vehicle);}
     }
-    private static void removeVehicle() {App.dealership.removeVehicle();}
+    private void removeVehicle() {dealership.removeVehicle();}
 }

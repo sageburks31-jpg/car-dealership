@@ -15,7 +15,7 @@ public class DealershipFileManager {
             String input;
             while((input = bufReader.readLine()) != null) {
                 String[] lineSegment = input.split("\\|");
-                if (lineSegment.length>2 && UserInterface.canParseStringToInt(lineSegment[0])) {
+                if (lineSegment.length>2 && App.canParseStringToInt(lineSegment[0])) {
                     Vehicle transaction = getVehicle(lineSegment);
                     App.dealership.addVehicle(transaction);
                 } else {
