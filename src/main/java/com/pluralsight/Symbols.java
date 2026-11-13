@@ -1,9 +1,11 @@
-public class Symbols 
+package com.pluralsight;
+
+public class Symbols
 {
-    public static final String SPADES = "\u2660";
-    public static final String CLUBS = "\u2663";
-    public static final String HEARTS = "\u2665";
-    public static final String DIAMONDS = "\u2666";
+    public static final String SPADES = "♠";
+    public static final String CLUBS = "♣";
+    public static final String HEARTS = "♥";
+    public static final String DIAMONDS = "♦";
 
     private Symbols(){}
     
