@@ -7,7 +7,11 @@ import static java.lang.Thread.*;
 
 public class App {
 
+    static ArrayList<Vehicle> vehicleList;
     static Scanner scanner = new Scanner(System.in);
+
+    public static void readFromFile() {}
+    public static void writeToFile() {}
 
     public static void main(String[] args) {
         displayMainMenu();
