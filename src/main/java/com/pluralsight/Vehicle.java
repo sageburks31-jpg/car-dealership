@@ -48,4 +48,14 @@ public class Vehicle {
 
     public int getOdometer() {return odometer;}
     public void setOdometer(int odometer) {this.odometer = odometer;}
+
+    public String toRow() {return String.format("%d | %d | %s | %s | %s | %s | %d | %s",
+            vin,
+            year,
+            make,
+            model,
+            type,
+            color,
+            odometer,
+            price); }
 }

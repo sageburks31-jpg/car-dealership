@@ -77,7 +77,7 @@ public class App {
                 case 7 -> listAllVehicles();
                 case 8 -> addVehicle();
                 case 9 -> removeVehicle();
-                default -> System.out.println("request out of scope try again");
+                default -> {if (intAnswer != 99) System.out.println("request out of scope try again");}
             }
         } while (intAnswer != 99);
     }
@@ -149,7 +149,9 @@ public class App {
     private static void findVehiclesByMileage() {}
     private static void findVehiclesByType() {}
 
-    private static void listAllVehicles() {}
+    private static void listAllVehicles() {
+        dealership.listAllVehicles();
+    }
     private static void addVehicle() {
         Vehicle vehicle = new Vehicle();
         String strAnswer;

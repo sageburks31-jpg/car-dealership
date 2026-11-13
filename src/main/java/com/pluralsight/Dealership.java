@@ -27,4 +27,7 @@ public class Dealership {
     public void addVehicle(Vehicle vehicle) {
         vehicleList.add(vehicle);
     }
+    public void listAllVehicles() {
+        vehicleList.forEach(vehicle -> System.out.println(vehicle.toRow()));
+    }
 }
