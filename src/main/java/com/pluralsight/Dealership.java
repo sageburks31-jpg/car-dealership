@@ -34,7 +34,7 @@ public class Dealership {
         Scanner scanner =new Scanner(System.in);
         vehicleList.forEach(vehicle -> System.out.println(vehicle.toShortRow()));
         System.out.println("Enter vehicle vin number to remove from list");
-        int vinKey = App.promptToInt("Enter VIN number here -> ");
+        int vinKey = UserInterface.promptToInt("Enter VIN number here -> ");
         int targetIndex = -1;
         for (int i = 0; i < vehicleList.size()-1; i++) {
             if (vehicleList.get(i).getVin()==vinKey) {
