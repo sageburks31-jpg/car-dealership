@@ -1,8 +1,6 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 
 public class DealershipFileManager {
@@ -36,6 +34,24 @@ public class DealershipFileManager {
         BigDecimal price = BigDecimal.valueOf(Double.parseDouble(lineSegment[7]));
         return new Vehicle(vin, year, make, model, type, color, odometer, price);
     }
-    public static void writeToFile() {}
+    public static void writeToFile(boolean append) {
+        try {
+            FileWriter fileWriter = new FileWriter("inventory.csv", append);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            if (append) {
+                bufferedWriter.append(UserInterface.DealershipVehicleList().get(UserInterface.DealershipVehicleList().size() - 1).toRow());
+                bufferedWriter.newLine();
+            } else {
+                if (!UserInterface.DealershipVehicleList().isEmpty()) {
+                    for (int i = 0; i < UserInterface.DealershipVehicleList().size(); i++) {
+                        bufferedWriter.append(UserInterface.DealershipVehicleList().get(i).toRow());
+                        bufferedWriter.newLine();
+                    }
+                }
+
+            }
+            bufferedWriter.close();
+        } catch(IOException e) {System.out.println("fail");}
+    }
 
 }

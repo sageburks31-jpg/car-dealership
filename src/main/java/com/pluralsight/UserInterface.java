@@ -1,14 +1,17 @@
 package com.pluralsight;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class UserInterface {
 
     private static Dealership dealership;
 
-    private void init() {DealershipFileManager.readFromFile();
-        dealership = App.dealership;}
-
+    private void init() {
+        DealershipFileManager.readFromFile();
+        dealership = App.dealership;
+        System.out.println(dealership.toRow());
+    }
     protected void displayMainMenu() {
         init();
         int intAnswer;
@@ -65,8 +68,8 @@ public class UserInterface {
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
                             i +=vehicleFields.length;
-                        } else if (App.canParseStringToDecimal(strAnswer)) {
-                            vehicle.setPrice(BigDecimal.valueOf(Double.parseDouble(strAnswer)));
+                        } else if (App.canParseStringToInt(strAnswer)) {
+                            vehicle.setVin(Integer.parseInt(strAnswer));
                             break;
                         } else System.out.println("invalid Command\n");
                     }
@@ -88,7 +91,7 @@ public class UserInterface {
                     if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
                         i -= 2;
                     } else {
-                        vehicle.setModel(strAnswer);
+                        vehicle.setMake(strAnswer);
                     }
                 }
                 case "model"-> {
@@ -128,23 +131,23 @@ public class UserInterface {
                     }
                 }
                 case "color"->{
-                    while (true) {
-                        System.out.print("please enter vehicle color or enter `-C` to cancel back" +
-                                "enter here -> ");
-                        strAnswer = App.scanner.nextLine().trim();
-                        if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
-                            i -= 2;
-                        } else if (strAnswer.equals("blue")) {
-                            vehicle.setType(strAnswer);
-                            isComplete = !isComplete;
-                            break;
-                        } else System.out.println("invalid Command\n");
+                    System.out.print("please enter vehicle color or enter `-C` to cancel back" +
+                            "enter here -> ");
+                    strAnswer = App.scanner.nextLine().trim();
+                    if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
+                        i -= 2;
+                    } else {
+                        vehicle.setColor(strAnswer);
+                        isComplete = !isComplete;
                     }
-
                 }
             }
         }
         if (isComplete) {dealership.addVehicle(vehicle);}
     }
     private void removeVehicle() {dealership.removeVehicle();}
+
+    public static ArrayList<Vehicle> DealershipVehicleList() {
+        return dealership.getVehicleList();
+    }
 }

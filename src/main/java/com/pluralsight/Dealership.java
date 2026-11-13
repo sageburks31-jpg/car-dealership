@@ -15,14 +15,14 @@ public class Dealership {
         this.address = address;
     }
 
+    public ArrayList<Vehicle> getVehicleList(){
+        return vehicleList;
+    }
     public void addVehicle(Vehicle vehicle) {
         vehicleList.add(vehicle);
-    }
-    public void listAllVehicles() {
-        vehicleList.forEach(vehicle -> System.out.println(vehicle.toRow()));
+        DealershipFileManager.writeToFile(true);
     }
     public void removeVehicle() {
-        Scanner scanner =new Scanner(System.in);
         vehicleList.forEach(vehicle -> System.out.println(vehicle.toShortRow()));
         System.out.println("Enter vehicle vin number to remove from list");
         int vinKey = App.promptToInt("Enter VIN number here -> ");
@@ -33,7 +33,11 @@ public class Dealership {
                 break;
             }
         }
-        if (targetIndex>-1) vehicleList.remove(targetIndex);
+        if (targetIndex>-1) vehicleList.remove(targetIndex); DealershipFileManager.writeToFile(false);
+    }
+
+    public void listAllVehicles() {
+        vehicleList.forEach(vehicle -> System.out.println(vehicle.toRow()));
     }
     public void findVehiclesByPrice() {
         BigDecimal minPrice = App.promptToBigDecimal("please enter price minim here -> ");
@@ -84,10 +88,13 @@ public class Dealership {
     public void findVehiclesByType() {
         String makeModel = App.promptToString("enter the Type of the vehicle\nEnter here -> ");
         for (Vehicle vehicle : vehicleList) {
-            if (vehicle.getColor().equals(makeModel)){
+            if (vehicle.getType().equals(makeModel)){
                 System.out.println(vehicle.toRow());
             }
         }
     }
 
+    public String toRow() {
+        return name + "|" + phoneNumber + "|" + address;
+    }
 }

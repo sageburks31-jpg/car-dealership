@@ -1,7 +1,6 @@
 package com.pluralsight;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.*;
 import java.math.*;
 import static java.lang.Thread.*;
@@ -83,16 +82,6 @@ public class App {
     }
 
 
-    public static boolean canPromptToYear(String prompt) {
-        LocalDate parse = LocalDate.now();
-        try {
-            parse = LocalDate.parse(prompt);
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.print(parse);
-            return false;
-        }
-    }
     public static boolean canParseStringToInt(String prompt) {
         try {
             Integer.parseInt(prompt);
