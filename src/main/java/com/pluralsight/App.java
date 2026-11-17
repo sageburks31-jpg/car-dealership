@@ -16,7 +16,6 @@ public class App {
         System.out.print("thank you for using this program");
         scanner.close();
     }
-
     public static int promptToInt(String prompt) {
         do {
             try {
@@ -98,6 +97,4 @@ public class App {
             return false;
         }
     }
-
-
 }

@@ -20,6 +20,8 @@ public class Dealership {
     }
     public void addVehicle(Vehicle vehicle) {
         vehicleList.add(vehicle);
+    }
+    public void updateFileList() {
         DealershipFileManager.writeToFile(true);
     }
     public void removeVehicle() {

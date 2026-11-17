@@ -11,11 +11,14 @@ public class DealershipFileManager {
             fileReader = new FileReader("inventory.csv");
             BufferedReader bufReader = new BufferedReader(fileReader);
             String input;
+
             while((input = bufReader.readLine()) != null) {
                 String[] lineSegment = input.split("\\|");
-                if (lineSegment.length>2 && App.canParseStringToInt(lineSegment[0])) {
-                    Vehicle transaction = getVehicle(lineSegment);
-                    App.dealership.addVehicle(transaction);
+
+                if ( lineSegment.length > 2 && App.canParseStringToInt( lineSegment[0] ) ) {
+                    Vehicle vehicle = getVehicle(lineSegment);
+                    App.dealership.addVehicle(vehicle);
+
                 } else {
                     App.dealership = new Dealership(lineSegment[0],lineSegment[1],lineSegment[2]);
                 }
@@ -24,6 +27,7 @@ public class DealershipFileManager {
         } catch (IOException e) {throw new RuntimeException(e);}
     }
     private static Vehicle getVehicle(String[] lineSegment) {
+        System.out.println("get Vehicle");
         int vin = Integer.parseInt(lineSegment[0]);
         int year = Integer.parseInt(lineSegment[1]) ;
         String make = lineSegment[2];
@@ -35,6 +39,7 @@ public class DealershipFileManager {
         return new Vehicle(vin, year, make, model, type, color, odometer, price);
     }
     public static void writeToFile(boolean append) {
+        System.out.println("write To File");
         try {
             FileWriter fileWriter = new FileWriter("inventory.csv", append);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

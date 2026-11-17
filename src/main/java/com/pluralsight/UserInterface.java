@@ -143,7 +143,7 @@ public class UserInterface {
                 }
             }
         }
-        if (isComplete) {dealership.addVehicle(vehicle);}
+        if (isComplete) {dealership.addVehicle(vehicle); dealership.updateFileList();}
     }
     private void removeVehicle() {dealership.removeVehicle();}
 
