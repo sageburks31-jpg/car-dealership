@@ -16,6 +16,7 @@ public class App {
         System.out.print("thank you for using this program");
         scanner.close();
     }
+
     public static int promptToInt(String prompt) {
         do {
             try {
@@ -30,25 +31,6 @@ public class App {
                 }
             }
         } while (true);
-    }
-
-    public static BigDecimal promptToBigDecimal(String prompt) {
-        do {
-            try {
-                System.out.print(prompt);
-                return BigDecimal.valueOf(Long.parseLong(App.scanner.nextLine().trim()));
-            } catch (NumberFormatException e) {
-                System.out.println("command is invalid\n");
-                try {
-                    sleep(900);
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        } while (true);
-    }
-    public static double getDecimal(BigDecimal bigDecimal) {
-        return Double.parseDouble(String.valueOf(bigDecimal));
     }
     public static String promptToString(String prompt) {
         while (true) {
@@ -79,7 +61,24 @@ public class App {
             }
         }
     }
+    public static BigDecimal promptToBigDecimal(String prompt) {
+        do {
+            try {
+                System.out.print(prompt);
+                return new BigDecimal(App.scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("command is invalid\n");
+                try {
+                    sleep(900);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        } while (true);
+    }
 
+    public static double getDecimal(BigDecimal bigDecimal) {
+        return Double.parseDouble(String.valueOf(bigDecimal));}
 
     public static boolean canParseStringToInt(String prompt) {
         try {

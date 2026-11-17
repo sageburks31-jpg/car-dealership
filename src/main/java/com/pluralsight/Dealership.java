@@ -15,15 +15,11 @@ public class Dealership {
         this.address = address;
     }
 
-    public ArrayList<Vehicle> getVehicleList(){
-        return vehicleList;
-    }
-    public void addVehicle(Vehicle vehicle) {
-        vehicleList.add(vehicle);
-    }
+    public ArrayList<Vehicle> getVehicleList() {return vehicleList;}
     public void updateFileList() {
         DealershipFileManager.writeToFile(true);
     }
+
     public void removeVehicle() {
         vehicleList.forEach(vehicle -> System.out.println(vehicle.toShortRow()));
         System.out.println("Enter vehicle vin number to remove from list");
@@ -37,6 +33,7 @@ public class Dealership {
         }
         if (targetIndex>-1) vehicleList.remove(targetIndex); DealershipFileManager.writeToFile(false);
     }
+    public void addVehicle(Vehicle vehicle) {vehicleList.add(vehicle);}
 
     public void listAllVehicles() {
         vehicleList.forEach(vehicle -> System.out.println(vehicle.toRow()));

@@ -147,7 +147,5 @@ public class UserInterface {
     }
     private void removeVehicle() {dealership.removeVehicle();}
 
-    public static ArrayList<Vehicle> DealershipVehicleList() {
-        return dealership.getVehicleList();
-    }
+    public static ArrayList<Vehicle> DealershipVehicleList() {return dealership.getVehicleList();}
 }
