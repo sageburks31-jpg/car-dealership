@@ -30,15 +30,43 @@ public class UserInterface {
 
             intAnswer = App.promptToInt("Enter command here -> ");
             switch (intAnswer) {
-                case 1 -> findVehiclesByPrice();
-                case 2 -> findVehiclesByMakeModel();
-                case 3 -> findVehiclesByYear();
-                case 4 -> findVehiclesByColor();
-                case 5 -> findVehiclesByMileage();
-                case 6 -> findVehiclesByType();
-                case 7 -> listAllVehicles();
-                case 8 -> addVehicle();
-                case 9 -> removeVehicle();
+                case 1 -> {
+                    findVehiclesByPrice();
+                    printStall();
+                }
+                case 2 -> {
+                    findVehiclesByMakeModel();
+                    printStall();
+                }
+                case 3 -> {
+                    findVehiclesByYear();
+                    printStall();
+                }
+                case 4 -> {
+                    findVehiclesByColor();
+                    printStall();
+                }
+                case 5 -> {
+                    findVehiclesByMileage();
+                    printStall();
+                }
+                case 6 -> {
+                    findVehiclesByType();
+                    printStall();
+                }
+                case 7 -> {
+                    listAllVehicles();
+                    printStall();
+                }
+                case 8 -> {
+                    addVehicle();
+                    printStall();
+                }
+                case 9 -> {
+                    removeVehicle();
+                    printStall();
+                }
+
                 default -> {if (intAnswer != 99) System.out.println("request out of scope try again");}
             }
         } while (intAnswer != 99);
@@ -59,7 +87,7 @@ public class UserInterface {
         String strAnswer;
         boolean isComplete = false;
         String[] vehicleFields = {"vin", "year", "make", "model", "type", "color", "price"};
-        for (int i = 0; i <= vehicleFields.length; i++){
+        for (int i = 0; i <= vehicleFields.length-1; i++){
             switch (vehicleFields[i]) {
                 case "vin"-> {
                     while (true) {
@@ -146,6 +174,11 @@ public class UserInterface {
         if (isComplete) {dealership.addVehicle(vehicle); dealership.updateFileList();}
     }
     private void removeVehicle() {dealership.removeVehicle();}
+
+    public static void printStall() {
+        System.out.println("press ENTER to continue:");
+        App.scanner.nextLine();
+    }
 
     public static ArrayList<Vehicle> DealershipVehicleList() {return dealership.getVehicleList();}
 }

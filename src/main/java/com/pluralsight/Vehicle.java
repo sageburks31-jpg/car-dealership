@@ -47,7 +47,7 @@ public class Vehicle {
 
     public int getOdometer() {return odometer;}
 
-    public String toRow() {return String.format("%d | %d | %s | %s | %s | %s | %d | %s",
+    public String toRow() {return String.format("vin: %d | year: %d | make: %s | model: %s | type: %s | color: %s | odometer: %d | price: %s",
             vin,
             year,
             make,
