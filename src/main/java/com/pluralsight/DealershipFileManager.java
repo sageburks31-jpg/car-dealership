@@ -11,20 +11,33 @@ public class DealershipFileManager {
             FileWriter fileWriter = new FileWriter("inventory.csv", append);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             if (append) {
-                bufferedWriter.append(UserInterface.DealershipVehicleList().get(UserInterface.DealershipVehicleList().size() - 1).toRow());
+                bufferedWriter.append(getVehicleRow(UserInterface.DealershipVehicleList().size() - 1).toString());
                 bufferedWriter.newLine();
             } else {
                 if (!UserInterface.DealershipVehicleList().isEmpty()) {
                     for (int i = 0; i < UserInterface.DealershipVehicleList().size(); i++) {
-                        bufferedWriter.append(UserInterface.DealershipVehicleList().get(i).toRow());
+                        bufferedWriter.append(getVehicleRow(i).toString());
                         bufferedWriter.newLine();
                     }
                 }
-
             }
             bufferedWriter.close();
         } catch(IOException e) {System.out.println("fail");}
     }
+
+    private static StringBuilder getVehicleRow(int index) {
+        String[] vehicleFields = UserInterface.DealershipVehicleList().get(index).toRow().split("\\|");
+        StringBuilder vehicleRow = new StringBuilder();
+        for (String v: vehicleFields){
+            String[] fieldData = v.split(":");
+            if (!fieldData[0].equals("price")) {
+                System.out.println(fieldData);
+                vehicleRow.append(fieldData[1].trim()).append("|");
+            } else vehicleRow.append(fieldData[1].trim());
+        }
+        return vehicleRow;
+    }
+
     public static void readFromFile() {
         FileReader fileReader;
         try {

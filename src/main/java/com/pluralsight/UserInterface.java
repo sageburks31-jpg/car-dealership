@@ -91,7 +91,7 @@ public class UserInterface {
             switch (vehicleFields[i]) {
                 case "vin"-> {
                     while (true) {
-                        System.out.print("please enter vehicle vin or enter `-C` to cancel back" +
+                        System.out.print("please enter vehicle vin or enter `-C` to cancel back \n" +
                                 "enter here -> ");
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
@@ -103,7 +103,7 @@ public class UserInterface {
                     }
                 }
                 case "type"-> {
-                    System.out.print("please enter vehicle type or enter `-C` to cancel out" +
+                    System.out.print("please enter vehicle type or enter `-C` to cancel out \n" +
                             "enter here -> ");
                     strAnswer = App.scanner.nextLine().trim();
                     if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
@@ -113,7 +113,7 @@ public class UserInterface {
                     }
                 }
                 case "make"-> {
-                    System.out.print("please enter vehicle make or enter `-C` to cancel out" +
+                    System.out.print("please enter vehicle make or enter `-C` to cancel out \n" +
                             "enter here -> ");
                     strAnswer = App.scanner.nextLine().trim();
                     if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
@@ -123,7 +123,7 @@ public class UserInterface {
                     }
                 }
                 case "model"-> {
-                    System.out.print("please enter vehicle model or enter `-C` to cancel out" +
+                    System.out.print("please enter vehicle model or enter `-C` to cancel out \n" +
                             "enter here -> ");
                     strAnswer = App.scanner.nextLine().trim();
                     if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
@@ -134,7 +134,7 @@ public class UserInterface {
                 }
                 case "price" -> {
                     while (true) {
-                        System.out.print("please enter vehicle price or enter `-C` to cancel back" +
+                        System.out.print("please enter vehicle price or enter `-C` to cancel back \n" +
                                 "enter here -> ");
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
@@ -147,7 +147,7 @@ public class UserInterface {
                 }
                 case "year" -> {
                     while (true) {
-                        System.out.print("please enter vehicle year(e.g 2006) or enter `-C` to cancel back" +
+                        System.out.print("please enter vehicle year(e.g 2006) or enter `-C` to cancel back \n" +
                                 "enter here -> ");
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
@@ -159,7 +159,7 @@ public class UserInterface {
                     }
                 }
                 case "color"->{
-                    System.out.print("please enter vehicle color or enter `-C` to cancel back" +
+                    System.out.print("please enter vehicle color or enter `-C` to cancel back \n" +
                             "enter here -> ");
                     strAnswer = App.scanner.nextLine().trim();
                     if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
