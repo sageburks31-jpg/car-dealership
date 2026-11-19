@@ -8,6 +8,7 @@ public class Dealership {
     private final String phoneNumber;
     private final String address;
     private final ArrayList<Vehicle> vehicleList = new ArrayList<>();
+    static int targetIndex=-1;
 
     public Dealership(String name, String phoneNumber, String address) {
         this.name = name;
@@ -24,8 +25,7 @@ public class Dealership {
         vehicleList.forEach(vehicle -> System.out.println(vehicle.toShortRow()));
         System.out.println("Enter vehicle vin number to remove from list");
         int vinKey = App.promptToInt("Enter VIN number here -> ");
-        int targetIndex = -1;
-        for (int i = 0; i < vehicleList.size()-1; i++) {
+        for (int i = 0; i < vehicleList.size(); i++) {
             if (vehicleList.get(i).getVin()==vinKey) {
                 targetIndex=i;
                 break;

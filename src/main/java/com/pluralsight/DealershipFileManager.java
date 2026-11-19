@@ -14,6 +14,9 @@ public class DealershipFileManager {
                 bufferedWriter.append(getVehicleRow(UserInterface.DealershipVehicleList().size() - 1).toString());
                 bufferedWriter.newLine();
             } else {
+                System.out.println("hi");
+                bufferedWriter.append("D & B Used Cars|111 Old Benbrook Rd|817-555-5555");
+                bufferedWriter.newLine();
                 if (!UserInterface.DealershipVehicleList().isEmpty()) {
                     for (int i = 0; i < UserInterface.DealershipVehicleList().size(); i++) {
                         bufferedWriter.append(getVehicleRow(i).toString());
@@ -22,15 +25,19 @@ public class DealershipFileManager {
                 }
             }
             bufferedWriter.close();
+            Dealership.targetIndex=-1;
         } catch(IOException e) {System.out.println("fail");}
     }
 
     private static StringBuilder getVehicleRow(int index) {
         String[] vehicleFields = UserInterface.DealershipVehicleList().get(index).toRow().split("\\|");
         StringBuilder vehicleRow = new StringBuilder();
+
         for (String v: vehicleFields){
             String[] fieldData = v.split(":");
-            if (!fieldData[0].equals("price")) {
+            System.out.println(fieldData[0]);
+
+            if (!fieldData[0].equals(" price")) {
                 vehicleRow.append(fieldData[1].trim()).append("|");
             } else vehicleRow.append(fieldData[1].trim());
         }
