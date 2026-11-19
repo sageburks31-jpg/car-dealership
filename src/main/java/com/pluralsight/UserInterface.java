@@ -66,7 +66,6 @@ public class UserInterface {
                     removeVehicle();
                     printStall();
                 }
-
                 default -> {if (intAnswer != 99) System.out.println("request out of scope try again");}
             }
         } while (intAnswer != 99);

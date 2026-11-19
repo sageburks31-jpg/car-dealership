@@ -31,7 +31,6 @@ public class DealershipFileManager {
         for (String v: vehicleFields){
             String[] fieldData = v.split(":");
             if (!fieldData[0].equals("price")) {
-                System.out.println(fieldData);
                 vehicleRow.append(fieldData[1].trim()).append("|");
             } else vehicleRow.append(fieldData[1].trim());
         }
@@ -61,7 +60,6 @@ public class DealershipFileManager {
     }
 
     private static Vehicle getVehicle(String[] lineSegment) {
-        System.out.println("get Vehicle");
         int vin = Integer.parseInt(lineSegment[0]);
         int year = Integer.parseInt(lineSegment[1]) ;
         String make = lineSegment[2];
