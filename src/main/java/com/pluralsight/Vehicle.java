@@ -45,6 +45,9 @@ public class Vehicle {
     public String getMake() {return make;}
     public void setMake(String make) {this.make = make;}
 
+    public void setOdometer(int odometer) {
+        this.odometer = odometer;
+    }
     public int getOdometer() {return odometer;}
 
     public String toRow() {return String.format("vin: %d | year: %d | make: %s | model: %s | type: %s | color: %s | odometer: %d | price: %s",

@@ -85,7 +85,7 @@ public class UserInterface {
         Vehicle vehicle = new Vehicle();
         String strAnswer;
         boolean isComplete = false;
-        String[] vehicleFields = {"vin", "year", "make", "model", "type", "color", "price"};
+        String[] vehicleFields = {"vin", "year", "make", "model", "type", "color", "Odometer", "price"};
         for (int i = 0; i <= vehicleFields.length-1; i++){
             switch (vehicleFields[i]) {
                 case "vin"-> {
@@ -95,6 +95,7 @@ public class UserInterface {
                         strAnswer = App.scanner.nextLine().trim();
                         if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
                             i +=vehicleFields.length;
+                            break;
                         } else if (App.canParseStringToInt(strAnswer)) {
                             vehicle.setVin(Integer.parseInt(strAnswer));
                             break;
@@ -166,6 +167,19 @@ public class UserInterface {
                     } else {
                         vehicle.setColor(strAnswer);
                         isComplete = !isComplete;
+                    }
+                }
+                case "Odometer"-> {
+                    while (true) {
+                        System.out.print("please enter vehicle Odometer or enter `-C` to cancel back \n" +
+                                "enter here -> ");
+                        strAnswer = App.scanner.nextLine().trim();
+                        if (strAnswer.equals("-C") || strAnswer.equals("-c")) {
+                            i +=vehicleFields.length;
+                        } else if (App.canParseStringToInt(strAnswer)) {
+                            vehicle.setOdometer(Integer.parseInt(strAnswer));
+                            break;
+                        } else System.out.println("invalid Command\n");
                     }
                 }
             }
